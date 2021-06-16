@@ -1,11 +1,18 @@
 <br>
 <div class="container-fluid offset-md-1">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title text-success">{{card.title}}</h5>
-          <p class="card-text text-primary">{{card.created_on}}</p>
-          <p>{{card.content}}</p>
-        </div>
-    </div>  
+  <div class="card" style="width: 18rem;" *ngFor="let card of checkString">
+    <div class="card-body">
+      <!-- <h5 class="card-title text-success">{{card.title}}</h5>
+      <p class="card-text text-primary">{{card.created_on}}</p>
+      <p>{{card.content}}</p> -->
+      {{card | json }}
+      
+    </div>
+  </div> <br>  
+</div>
+
+<div class="container-fluid">
+  <br>
+  <button type="button" (click)="getAllCards()">Show all Cards </button>
 </div>
 

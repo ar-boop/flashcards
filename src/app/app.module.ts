@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AllCardsComponent } from './all-cards/all-cards.component';
 import { AllCardsService } from './all-cards/all-cards.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AllCardsService } from './all-cards/all-cards.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [AllCardsService],
   bootstrap: [AppComponent]
