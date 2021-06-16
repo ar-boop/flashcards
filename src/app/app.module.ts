@@ -7,17 +7,21 @@ import { HomeComponent } from './home/home.component';
 import { AllCardsComponent } from './all-cards/all-cards.component';
 import { AllCardsService } from './all-cards/all-cards.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PracticeComponent } from './practice/practice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AllCardsComponent
+    AllCardsComponent,
+    PracticeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [AllCardsService],
   bootstrap: [AppComponent]
