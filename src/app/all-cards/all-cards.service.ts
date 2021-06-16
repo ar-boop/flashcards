@@ -10,6 +10,6 @@ export class AllCardsService {
   constructor(private http:HttpClient) { }
 
   getCards():Observable<any>{
-    return this.http.get("https://flashcards-b.herokuapp.com//fc/cards/all")
+    return this.http.get("https://flashcards-b.herokuapp.com/fc/cards/all")
   }
 }
