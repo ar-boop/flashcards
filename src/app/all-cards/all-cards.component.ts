@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { card } from '../card';
 import { AllCardsService } from './all-cards.service';
 import { cardContent } from './cardContent';
 
@@ -24,7 +25,7 @@ export class AllCardsComponent implements OnInit {
     })
   }
   
-  checkString!:string
+  checkString!:card[]
   errorMessage!:string
   finshed:boolean=false
   card:cardContent = {
@@ -33,9 +34,19 @@ export class AllCardsComponent implements OnInit {
     content:'',
     created_on:''
   }
+  clearMessages(){
+    this.addEM=null
+    this.addSM=null
+    this.gaEM=null
+    this.putSM=null
+    this.putEM=null
+    this.delSM=null
+    this.delEM=null
+  }
   gaEM:string=''
   getAllCards(){
-    this.gaEM=null
+    this.clearMessages()
+    this.checkString=null
     const sub = this.cs.getCards().subscribe(
       response =>{ this.checkString = response 
       },
@@ -54,8 +65,7 @@ export class AllCardsComponent implements OnInit {
   addSM:string=''
   addEM:string=''
   add(){
-    this.addSM=null
-    this.addEM=null
+    this.clearMessages()
     console.log(this.cardForm.value);
     const sub = this.cs.add(this.cardForm.value).subscribe(
       response =>{ this.addSM = response.message
@@ -77,12 +87,12 @@ export class AllCardsComponent implements OnInit {
   putSM:string=''
   putEM:string=''
   put(){
-    this.putEM=null
-    this.putEM=null
+    this.clearMessages()
     console.log(this.cardForm.value);
     const sub = this.cs.put(this.cardForm.value).subscribe(
       response =>{ 
         this.putSM = response.message
+        this.cardForm.reset()
         console.log(this.putSM);
       },
     
@@ -102,8 +112,7 @@ export class AllCardsComponent implements OnInit {
   delSM:string=''
   delEM:string=''
   del(){
-    this.delEM=null
-    this.delSM=null
+    this.clearMessages()
     console.log(this.cardForm.value);
     const sub = this.cs.del(this.cardForm.value.cardId).subscribe(
       response => {
