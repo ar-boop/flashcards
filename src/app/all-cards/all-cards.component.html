@@ -5,12 +5,11 @@
       <!-- <h5 class="card-title text-success">{{card.title}}</h5>
       <p class="card-text text-primary">{{card.created_on}}</p>
       <p>{{card.content}}</p> -->
-      {{card | json }}
-      
-    </div>
+      {{card | json }}     
+    </div> 
   </div> <br>
-  <button type="button" class="btn btn-warning" (click)="getAllCards()">Show all Cards 📓</button>
-  <br> <br>
+  <button type="button" class="btn btn-warning" (click)="getAllCards()">Show all Cards 📓</button> <br> <br>
+  <span *ngIf="gaEM!=null" class="text-danger">{{gaEM}}</span>
 </div>
 <div class="container-fluid col-md-8 offset-md-1 boxy">
   <br>
@@ -33,9 +32,9 @@
     </div>
     <br>
     <button type="submit" class="btn btn-warning" >add new card! 📚</button>
-  </form>
-  <span>{{addSM}}</span>
-  <br><br>
+  </form><br>
+  <span class="text-success">{{addSM}}</span>
+  <span class="text-danger"> {{addEM}}</span>
 </div>
 
 <div class="container-fluid col-md-8 offset-md-1 boxy">
@@ -66,13 +65,12 @@
     <button type="submit" class="btn btn-warning" >Update! 🧪</button>
   </form>
   <br>
-  <span>{{putSM}}</span>
-  <br>
+  <span class="text-success">{{putSM}}</span>
+  <span class="text-danger"> {{errorMessage}}</span>
 </div>
 
 <div class="container-fluid col-md-8 offset-md-1 boxy">
   <h5>Delete: </h5>
-  <span class="text-danger"> Debuggin! 😅</span>
   <form class="form" [formGroup]="cardForm" (ngSubmit)="del()">
     <div class="form-group">
       <label for="cardId">Card Id: </label>
@@ -82,8 +80,9 @@
     <br>
     <button type="submit" class="btn btn-warning" (click)="getAllCards()">Delete ✂</button>
   </form>
-  
-  <br><br>
+  <br>
+  <span class="text-danger">{{delSM}}</span>
+  <span class="text-danger">{{delEM}}</span>
 </div>
 
 

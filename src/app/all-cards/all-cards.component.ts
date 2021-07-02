@@ -33,13 +33,15 @@ export class AllCardsComponent implements OnInit {
     content:'',
     created_on:''
   }
-  
+  gaEM:string=''
   getAllCards(){
+    this.gaEM=null
     const sub = this.cs.getCards().subscribe(
       response =>{ this.checkString = response 
       },
     
-      error => { this.errorMessage = error.error.message
+      error => { this.gaEM = error.error.errorMessage
+        console.log(error);
         sub.unsubscribe() 
       },
 
@@ -50,15 +52,18 @@ export class AllCardsComponent implements OnInit {
   }
 
   addSM:string=''
+  addEM:string=''
   add(){
+    this.addSM=null
+    this.addEM=null
     console.log(this.cardForm.value);
     const sub = this.cs.add(this.cardForm.value).subscribe(
       response =>{ this.addSM = response.message
         console.log("res");
-        
+        this.cardForm.reset()
       },
     
-      error => { this.errorMessage = error.error.message
+      error => { this.addEM = error.error.errorMessage
         console.log("err");
         sub.unsubscribe() 
       },
@@ -68,42 +73,51 @@ export class AllCardsComponent implements OnInit {
       }     
     )
   }
+  
   putSM:string=''
+  putEM:string=''
   put(){
+    this.putEM=null
+    this.putEM=null
     console.log(this.cardForm.value);
-    const sub = this.cs.add(this.cardForm.value).subscribe(
-      response =>{ this.putSM = response.message
+    const sub = this.cs.put(this.cardForm.value).subscribe(
+      response =>{ 
+        this.putSM = response.message
         console.log(this.putSM);
-        
       },
     
-      error => { this.errorMessage = error.error.message
-        console.log("err");
+      error => { 
+        this.putEM = error.error.errorMessage
+        console.log("Error in Put");
         sub.unsubscribe() 
       },
 
-      () => { this.finshed=true
-        console.log("finished put") 
+      () => { 
+        this.finshed=true
+        console.log("Finished put") 
       }     
     )
   }
+
   delSM:string=''
+  delEM:string=''
   del(){
+    this.delEM=null
+    this.delSM=null
     console.log(this.cardForm.value);
-    const sub = this.cs.add(this.cardForm.value.cardId).subscribe(
-      response =>{ this.putSM = response.message
-        console.log("res");
-        
+    const sub = this.cs.del(this.cardForm.value.cardId).subscribe(
+      response => {
+        this.delSM = response.message 
+        this.cardForm.reset()
       },
-    
-      error => { this.errorMessage = error.error.message
-        console.log("err del");
+      
+      error => { 
+        this.delEM = error.error.errorMessage
+        console.log(error);
         sub.unsubscribe() 
       },
 
-      () => { this.finshed=true
-        console.log("finished add") 
-      }     
+      () => { this.finshed=true }     
     )
   }
 }

@@ -16,17 +16,14 @@ export class AllCardsService {
 
   add(card):Observable<any> {
     return this.http.post("https://flashcards-b.herokuapp.com/fc/cards/add",card)
-    return this.http.post("http://localhost:8765/fc/cards/add",card)
   }
 
   put(card):Observable<any> {
     return this.http.put("https://flashcards-b.herokuapp.com/fc/cards/put",card)
-    return this.http.put("http://localhost:8765/fc/cards/put",card)
   }
 
   del(cardNo):Observable<any> {
-    // return this.http.put(`http://flashcards-b.herokuapp.com/fc/cards/del/${cardNo}`,cardNo)
-    return this.http.put(`https://flashcards-b.herokuapp.com/fc/cards/del/${cardNo}`,cardNo)
+    return this.http.delete(`https://flashcards-b.herokuapp.com/fc/cards/del/${cardNo}`,cardNo)
   }
   
 }
